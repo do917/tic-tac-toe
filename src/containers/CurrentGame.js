@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import components from '../components';
 
+const { Board, Header, Piece } = components;
 
-const CurrentGame = () => {
+const CurrentGame = ({ }) => {
+  let pieces = [<Piece mark={'x'} />, <Piece mark={'x'} />, <Piece mark={'x'} />, <Piece mark={'x'} />, <Piece mark={'x'} />, <Piece mark={'x'} />, <Piece mark={'x'} />, <Piece mark={'x'} />, <Piece mark={'o'} />];
   return (
-    <div>
-      currgame
+    <div className="current-game">
+      <Header />
+      <Board pieces={pieces} />
     </div>
   );
 };

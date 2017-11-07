@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  border: 2px solid blue;
 }
 
 .App-logo {
@@ -20,6 +25,62 @@
 
 .App-intro {
   font-size: large;
+}
+
+.piece {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board {
+  display: grid;
+  grid-template-rows: 50px 50px 50px;
+  grid-template-columns: 50px 50px 50px;
+  grid-template-areas: 
+    "0 1 2"
+    "3 4 5"
+    "6 7 8"
+}
+
+.pos-0 {
+  grid-area: "0";
+}
+
+.pos-1 {
+  grid-area: "1";
+}
+
+.pos-2 {
+  grid-area: "2";
+}
+
+.pos-3 {
+  grid-area: "3";
+}
+
+.pos-4 {
+  grid-area: "4";
+}
+
+.pos-5 {
+  grid-area: "5";
+}
+
+.pos-6 {
+  grid-area: "6";
+}
+
+.pos-7 {
+  grid-area: "7";
+}
+
+.pos-8 {
+  grid-area: "8";
+}
+
+.board-section {
+  border: 2px solid red;
 }
 
 @keyframes App-logo-spin {

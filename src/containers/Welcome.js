@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-const Welcome = () => {
+const Welcome = ({ }) => {
   return (
     <div>
       welcome

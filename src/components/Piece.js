@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-const Piece = () => {
+const Piece = ({ mark }) => {
   return (
-    <div>
-      Piece
+    <div className="piece">
+      {mark}
     </div>
   );
 };
@@ -14,4 +14,4 @@ Piece.propTypes = {
 
 };
 
-export default Piece
+export default Piece;
