@@ -9,6 +9,7 @@ const defualtState = {
   gameInPlay: false,
   username: '',
   pieces: ['', '', '', '', '', '', '', '', ''],
+  currentStatus: 'Make your move!'
 };
 
 const reducer = (state = defualtState, action) => {
