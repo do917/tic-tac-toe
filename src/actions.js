@@ -24,10 +24,30 @@ const checkWin = (pieces) => {
     return cols;
   };
 
+  const getDiags = (pcs) => {
+    const diags = [];
+    let currDiag = [];
+    for (let i = 0; i < boardLength; i++) {
+      const pointer = boardLength * i;
+      currDiag.push(pcs[i + pointer]);
+    }
+    diags.push(currDiag);
+    currDiag = [];
+    // TODO:
+    // hard coded solution for finding second diagonal
+    for (let i = 2; i < 8; i += 2) {
+      currDiag.push(pcs[i]);
+    }
+    diags.push(currDiag);
+
+    return diags;
+  }
+
   const aWin = (pcs) => {
     const rows = getRows(pcs);
     const cols = getCols(pcs);
-    const allPoss = [...rows, ...cols];
+    const diags = getDiags(pcs)
+    const allPoss = [...rows, ...cols, ...diags];
     for (let i = 0; i < allPoss.length; i++) {
       const poss = allPoss[i];
       
