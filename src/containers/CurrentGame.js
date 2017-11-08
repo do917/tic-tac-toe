@@ -71,7 +71,6 @@ class CurrentGameContainer extends React.Component {
       this.computerMakesMove();
     }
 
-    // width is number of rows * 100
     return (
       <div className="current-game flex-center">
         <Status text={this.currentStatusToMsg(currentStatus)} />

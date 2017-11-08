@@ -6,7 +6,7 @@ import components from '../components';
 const { Board, Status, Piece } = components;
 
 
-const EndGameContainer = ({ winner, pieces }) => {
+const EndGameContainer = ({ winner, pieces, boardLength }) => {
   const message = {
     X: 'You Lost :(',
     O: 'You Won!!',
@@ -20,15 +20,16 @@ const EndGameContainer = ({ winner, pieces }) => {
   return (
     <div className="endgame">
       <Status text={announcement} />
-      <Board pieces={boardPieces} width={3 * 100} />
+      <Board pieces={boardPieces} width={boardLength * 100} />
     </div>
   );
 };
 
 
 const mapStateToProps = (state) => ({
-  winner: state.game.winningPlayer,
   pieces: state.game.pieces,
+  winner: state.game.winningPlayer,
+  boardLength: state.game.boardLength,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -37,6 +38,7 @@ const mapDispatchToProps = (dispatch) => ({
 EndGameContainer.propTypes = {
   winner: PropTypes.string,
   pieces: PropTypes.array.isRequired,
+  boardLength: PropTypes.number.isRequired,
 };
 
 const EndGame = connect(

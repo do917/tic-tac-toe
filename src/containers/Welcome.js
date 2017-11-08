@@ -21,7 +21,9 @@ const WelcomeContainer = ({
 }) => {
   const handlePlayGame = (e) => {
     e.preventDefault();
-    playGame(boardLength);
+    if (username) {
+      playGame(boardLength);
+    }
   };
 
   return (

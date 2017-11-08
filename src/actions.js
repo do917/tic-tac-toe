@@ -3,11 +3,10 @@ import {
   UPDATE_BOARD,
   EDIT_USERNAME,
   SET_BOARD_LENGTH,
-  INITIALIZE_BOARD,
 } from './actionTypes';
 
 const checkWin = (pieces) => {
-  const boardLength = 3;
+  const boardLength = Math.sqrt(pieces.length);
   const players = ['O', 'X'];
 
   const getRows = (pcs) => {
@@ -21,12 +20,17 @@ const checkWin = (pieces) => {
   const getCols = (pcs) => {
     const cols = [];
     for (let i = 0; i < boardLength; i++) {
-      cols.push([pcs[i], pcs[i + boardLength], pcs[i + (boardLength * 2)]]);
+      const currCol = [];
+      for (let j = 0; j < boardLength; j++) {
+        currCol.push(pcs[i + j * boardLength]);
+      }
+      cols.push(currCol);
     }
     return cols;
   };
 
   const getDiags = (pcs) => {
+    // Get Left sloping down to right diagonal
     const diags = [];
     let currDiag = [];
     for (let i = 0; i < boardLength; i++) {
@@ -34,10 +38,12 @@ const checkWin = (pieces) => {
       currDiag.push(pcs[i + pointer]);
     }
     diags.push(currDiag);
+
+    // Get Right sloping down to left diagonal
     currDiag = [];
-    // TODO:
-    // hard coded solution for finding second diagonal
-    for (let i = 2; i < 8; i += 2) {
+    const startRightDiag = boardLength - 1;
+    const maxRightDiag = startRightDiag * boardLength;
+    for (let i = startRightDiag; i <= maxRightDiag; i += startRightDiag) {
       currDiag.push(pcs[i]);
     }
     diags.push(currDiag);
@@ -48,8 +54,9 @@ const checkWin = (pieces) => {
   const aWin = (pcs) => {
     const rows = getRows(pcs);
     const cols = getCols(pcs);
-    const diags = getDiags(pcs)
+    const diags = getDiags(pcs);
     const allPoss = [...rows, ...cols, ...diags];
+    
     for (let i = 0; i < allPoss.length; i++) {
       const poss = allPoss[i];
       
@@ -91,7 +98,7 @@ const placePieceHelper = (i, player, board) => {
     O: 'X',
   };
   const placedLastPiece = boardCopy
-    .filter(p => p !== '').length === 9;
+    .filter(p => p !== '').length === board.length;
 
   if (winningPlayer || placedLastPiece) {
     gameInPlay = false;
