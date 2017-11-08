@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 
 
 const Board = ({ pieces }) => {
-  // const pieces = ['x', '', 'o','x', '', 'o','x', '', 'o'];
-
   return (
     <div className="board">
       {pieces.map((piece, i) => {
         return (
-          <div className={`board-section pos-${i}`}>
+          <div key={i} className={`board-section pos-${i}`}>
             {piece}
           </div>
         );
@@ -19,7 +17,7 @@ const Board = ({ pieces }) => {
 };
 
 Board.propTypes = {
-
+  pieces: PropTypes.array.isRequired,
 };
 
 export default Board;

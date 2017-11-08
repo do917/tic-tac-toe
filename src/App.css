@@ -7,11 +7,6 @@
   border: 2px solid blue;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
 .App-header {
   background-color: #222;
   height: 150px;
@@ -27,11 +22,7 @@
   font-size: large;
 }
 
-.piece {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 .board {
   display: grid;
@@ -80,6 +71,11 @@
 }
 
 .board-section {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   border: 2px solid red;
 }
 

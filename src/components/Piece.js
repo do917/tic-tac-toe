@@ -11,7 +11,7 @@ const Piece = ({ mark }) => {
 };
 
 Piece.propTypes = {
-
+  mark: PropTypes.string.isRequired,
 };
 
 export default Piece;

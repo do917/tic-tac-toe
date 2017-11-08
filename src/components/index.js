@@ -1,9 +1,9 @@
 import Board from './Board';
-import Header from './Header';
+import Status from './Status';
 import Piece from './Piece';
 
 export default {
   Board,
-  Header,
+  Status,
   Piece,
 };
