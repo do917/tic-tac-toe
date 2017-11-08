@@ -1,13 +1,14 @@
 import {
-  ADD_MOVE,
-  UPDATE_STATUS,
+  PLAY_GAME,
+  UPDATE_BOARD,
   EDIT_USERNAME,
 } from './actionTypes';
 
 const defualtState = {
   playerInit: false,
-  gameWinner: false,
+  gameInPlay: false,
   username: '',
+  pieces: ['', '', '', '', '', '', '', '', ''],
 };
 
 const reducer = (state = defualtState, action) => {
@@ -17,6 +18,22 @@ const reducer = (state = defualtState, action) => {
       username: action.payload.data,
     };
   }
+
+  if (action.type === PLAY_GAME) {
+    return {
+      ...state,
+      playerInit: true,
+      gameInPlay: true,
+    };
+  }
+
+  if (action.type === UPDATE_BOARD) {
+    return {
+      ...state,
+      pieces: action.payload.data,
+    };
+  }
+
   return state;
 };
 

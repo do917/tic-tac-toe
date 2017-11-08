@@ -1,8 +1,14 @@
 import {
-  ADD_MOVE,
-  UPDATE_STATUS,
+  PLAY_GAME,
+  UPDATE_BOARD,
   EDIT_USERNAME,
 } from './actionTypes';
+
+const placePieceHelper = (i, board) => {
+  const boardCopy = [...board];
+  boardCopy[i] = 'O';
+  return boardCopy;
+};
 
 const editUsername = (t) => ({
   type: EDIT_USERNAME,
@@ -11,6 +17,19 @@ const editUsername = (t) => ({
   },
 });
 
+const playGame = () => ({
+  type: PLAY_GAME,
+});
+
+const placePiece = (i, board) => ({
+  type: UPDATE_BOARD,
+  payload: {
+    data: placePieceHelper(i, board),
+  },
+});
+
 export default {
+  playGame,
+  placePiece,
   editUsername,
 };
