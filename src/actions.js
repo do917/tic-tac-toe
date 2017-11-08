@@ -2,6 +2,8 @@ import {
   PLAY_GAME,
   UPDATE_BOARD,
   EDIT_USERNAME,
+  SET_BOARD_LENGTH,
+  INITIALIZE_BOARD,
 } from './actionTypes';
 
 const checkWin = (pieces) => {
@@ -71,6 +73,14 @@ const checkWin = (pieces) => {
   return aWin(pieces);
 };
 
+const initializeBoardHelper = (len) => {
+  const pieces = [];
+  for (let i = 0; i < len * len; i++) {
+    pieces.push('');
+  }
+  return pieces;
+};
+
 const placePieceHelper = (i, player, board) => {
   const boardCopy = [...board];
   boardCopy[i] = player
@@ -95,6 +105,13 @@ const placePieceHelper = (i, player, board) => {
   };
 };
 
+const setBoardLength = (len) => ({
+  type: SET_BOARD_LENGTH,
+  payload: {
+    data: len,
+  },
+});
+
 const editUsername = (t) => ({
   type: EDIT_USERNAME,
   payload: {
@@ -102,8 +119,11 @@ const editUsername = (t) => ({
   },
 });
 
-const playGame = () => ({
+const playGame = (len) => ({
   type: PLAY_GAME,
+  payload: {
+    data: initializeBoardHelper(len),
+  },
 });
 
 const placePiece = (i, player, board) => ({
@@ -117,4 +137,5 @@ export default {
   playGame,
   placePiece,
   editUsername,
+  setBoardLength,
 };

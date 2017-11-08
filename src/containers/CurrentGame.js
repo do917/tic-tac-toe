@@ -47,6 +47,7 @@ class CurrentGameContainer extends React.Component {
     const {
       pieces,
       placePiece,
+      boardLength,
       currentStatus,
     } = this.props;
 
@@ -74,7 +75,7 @@ class CurrentGameContainer extends React.Component {
     return (
       <div className="current-game flex-center">
         <Status text={this.currentStatusToMsg(currentStatus)} />
-        <Board pieces={boardPieces} width={3 * 100} />
+        <Board pieces={boardPieces} width={boardLength * 100} />
       </div>
     );
   }
@@ -84,6 +85,7 @@ class CurrentGameContainer extends React.Component {
 const mapStateToProps = (state) => ({
   pieces: state.game.pieces,
   username: state.game.username,
+  boardLength: state.game.boardLength,
   currentStatus: state.game.currentStatus,
 });
 
@@ -95,6 +97,7 @@ CurrentGameContainer.propTypes = {
   pieces: PropTypes.array.isRequired,
   username: PropTypes.string.isRequired,
   placePiece: PropTypes.func.isRequired,
+  boardLength: PropTypes.number.isRequired,
   currentStatus: PropTypes.string.isRequired,
 };
 

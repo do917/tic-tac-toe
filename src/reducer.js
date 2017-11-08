@@ -2,6 +2,7 @@ import {
   PLAY_GAME,
   UPDATE_BOARD,
   EDIT_USERNAME,
+  SET_BOARD_LENGTH,
 } from './actionTypes';
 
 const defualtState = {
@@ -14,6 +15,13 @@ const defualtState = {
 };
 
 const reducer = (state = defualtState, action) => {
+  if (action.type === SET_BOARD_LENGTH) {
+    return {
+      ...state,
+      boardLength: action.payload.data,
+    };
+  }
+
   if (action.type === EDIT_USERNAME) {
     return {
       ...state,
@@ -26,6 +34,7 @@ const reducer = (state = defualtState, action) => {
       ...state,
       playerInit: true,
       gameInPlay: true,
+      pieces: action.payload.data,
     };
   }
 
