@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
-  Button,
   FormControl,
   SplitButton,
   MenuItem,
@@ -43,7 +42,7 @@ const WelcomeContainer = ({
           id="play-button"
           bsStyle="primary"
           onClick={handlePlayGame}
-          style={{ width: 175 }}
+          style={{ width: 275 }}
         >
           <MenuItem eventKey="0">Grid Length</MenuItem>
           <MenuItem divider />
