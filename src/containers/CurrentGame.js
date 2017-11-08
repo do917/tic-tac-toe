@@ -13,10 +13,20 @@ class CurrentGameContainer extends React.Component {
     this.computerMakesMove = this.computerMakesMove.bind(this);
   }
 
+  piecesOnBoard(pieces) {
+    return pieces.reduce((acc, piece, i) => {
+      if (piece === '') {
+        return [...acc, i];
+      } else {
+        return acc;
+      }
+    }, []);
+  }
+
   currentStatusToMsg(st) {
     const status = {
-      o: 'Make Your Move!',
-      x: 'The computer is thinking',
+      O: `${this.props.username}, make your move!`,
+      X: 'The computer is thinking',
     };
     return status[st];
   }
@@ -24,17 +34,11 @@ class CurrentGameContainer extends React.Component {
   computerMakesMove() {
     const { pieces, placePiece } = this.props;
     setTimeout(() => {
-      const availPieces = pieces.reduce((acc, piece, i) => {
-        if (piece === '') {
-          return [...acc, i];
-        } else {
-          return acc;
-        }
-      }, []);
+      const availPieces = this.piecesOnBoard(pieces);
       const indToDel = availPieces[Math.floor(Math.random() * availPieces.length)];
 
-      placePiece(indToDel, 'x', pieces);
-    }, 3000);
+      placePiece(indToDel, 'X', pieces);
+    }, 1000);
   }
 
   render() {
@@ -48,15 +52,17 @@ class CurrentGameContainer extends React.Component {
         <Piece
           mark={d}
           cb={() => {
-            if (currentStatus === 'o') {
-              placePiece(i, 'o', pieces)}
+            const piecesOnBoard = this.piecesOnBoard(pieces);
+            const spaceAvailable = piecesOnBoard.indexOf(i) !== -1;
+            if (currentStatus === 'O' && spaceAvailable) {
+              placePiece(i, 'O', pieces)}
             }
           } 
         />
       );
     });
 
-    if (currentStatus === 'x') {
+    if (currentStatus === 'X') {
       this.computerMakesMove();
     } 
 
@@ -71,6 +77,7 @@ class CurrentGameContainer extends React.Component {
 
 const mapStateToProps = (state) => ({
   pieces: state.game.pieces,
+  username: state.game.username,
   currentStatus: state.game.currentStatus,
 });
 
@@ -80,6 +87,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 CurrentGameContainer.propTypes = {
   pieces: PropTypes.array.isRequired,
+  username: PropTypes.string.isRequired,
   placePiece: PropTypes.func.isRequired,
   currentStatus: PropTypes.string.isRequired,
 };
@@ -88,6 +96,5 @@ const CurrentGame = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(CurrentGameContainer);
-
 
 export default CurrentGame;

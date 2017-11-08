@@ -8,7 +8,7 @@ const defualtState = {
   username: '',
   playerInit: false,
   gameInPlay: false,
-  currentStatus: 'o',
+  currentStatus: 'O',
   pieces: ['', '', '', '', '', '', '', '', ''],
 };
 
@@ -29,10 +29,18 @@ const reducer = (state = defualtState, action) => {
   }
 
   if (action.type === UPDATE_BOARD) {
+    const {
+      board,
+      gameInPlay,
+      winningPlayer,
+      nextPlayerTurn,
+    } = action.payload.data;
     return {
       ...state,
-      pieces: action.payload.data.board,
-      currentStatus: action.payload.data.nextPlayerTurn,
+      gameInPlay,
+      winningPlayer,
+      pieces: board,
+      currentStatus: nextPlayerTurn,
     };
   }
 

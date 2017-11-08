@@ -1,16 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-const EndGame = ({ }) => {
+const EndGameContainer = ({ winner }) => {
+  const message = {
+    X: 'You Lost :(',
+    O: 'You Won!!',
+  };
+
   return (
     <div>
-      EndGame
+      {message[winner]}
     </div>
   );
 };
 
-EndGame.propTypes = {
+const mapStateToProps = (state) => ({
+  winner: state.game.winningPlayer,
+});
 
+const mapDispatchToProps = (dispatch) => ({
+});
+
+EndGameContainer.propTypes = {
+  winner: PropTypes.string.isRequired,
 };
 
-export default EndGame
+const EndGame = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(EndGameContainer);
+
+export default EndGame;
