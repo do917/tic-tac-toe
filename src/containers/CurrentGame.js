@@ -40,7 +40,7 @@ class CurrentGameContainer extends React.Component {
       const indToDel = availPieces[Math.floor(Math.random() * availPieces.length)];
 
       placePiece(indToDel, 'X', pieces);
-    }, 1);
+    }, timeToThink);
   }
 
   render() {
