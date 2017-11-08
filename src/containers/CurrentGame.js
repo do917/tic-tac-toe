@@ -50,6 +50,7 @@ class CurrentGameContainer extends React.Component {
     const boardPieces = pieces.map((d, i) => {
       return (
         <Piece
+          key={i}
           mark={d}
           cb={() => {
             const piecesOnBoard = this.piecesOnBoard(pieces);
@@ -65,11 +66,11 @@ class CurrentGameContainer extends React.Component {
     if (currentStatus === 'X') {
       this.computerMakesMove();
     } 
-
+    // width is number of rows * 100
     return (
-      <div className="current-game">
+      <div className="current-game flex-center">
         <Status text={this.currentStatusToMsg(currentStatus)} />
-        <Board pieces={boardPieces} />
+        <Board pieces={boardPieces} width={3 * 100} />
       </div>
     );
   }

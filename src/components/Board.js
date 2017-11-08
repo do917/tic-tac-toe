@@ -1,21 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Board = ({ pieces }) => {
+const Board = ({ pieces, width }) => {
   return (
-    <div className="board">
-      {pieces.map((piece, i) => {
-        return (
-          <div key={i} className={`board-section pos-${i}`}>
-            {piece}
-          </div>
-        );
-      })}
+    <div className="board" style={{ width }}>
+      {pieces.map(piece => piece)}
     </div>
   );
 };
 
 Board.propTypes = {
+  width: PropTypes.number.isRequired,
   pieces: PropTypes.array.isRequired,
 };
 

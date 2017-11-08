@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import components from '../components';
+
+const { Status } = components;
 
 const EndGameContainer = ({ winner }) => {
   const message = {
@@ -9,8 +12,8 @@ const EndGameContainer = ({ winner }) => {
   };
 
   return (
-    <div>
-      {message[winner]}
+    <div className="endgame">
+      <Status text={message[winner]} />
     </div>
   );
 };

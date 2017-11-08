@@ -19,7 +19,7 @@ const checkWin = (pieces) => {
   const getCols = (pcs) => {
     const cols = [];
     for (let i = 0; i < boardLength; i++) {
-      cols.push([pcs[i], pcs[i + boardLength], pcs[i + boardLength*2]]);
+      cols.push([pcs[i], pcs[i + boardLength], pcs[i + (boardLength * 2)]]);
     }
     return cols;
   };
@@ -41,7 +41,7 @@ const checkWin = (pieces) => {
     diags.push(currDiag);
 
     return diags;
-  }
+  };
 
   const aWin = (pcs) => {
     const rows = getRows(pcs);
@@ -74,18 +74,17 @@ const checkWin = (pieces) => {
 const placePieceHelper = (i, player, board) => {
   const boardCopy = [...board];
   boardCopy[i] = player.toUpperCase();
+  const winningPlayer = checkWin(boardCopy);
+  let gameInPlay = true;
   const turn = {
     X: 'O',
     O: 'X',
   };
-  let winningPlayer;
-  let gameInPlay = true;
 
-  if (checkWin(boardCopy)) {
-    winningPlayer = checkWin(boardCopy);
+  if (winningPlayer) {
     gameInPlay = false;
   }
-  
+
   return {
     gameInPlay,
     winningPlayer,

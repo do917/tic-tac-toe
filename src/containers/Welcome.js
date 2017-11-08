@@ -1,43 +1,47 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import actions from '../actions';
 import {
-  Form,
-  FormControl,
   Button,
+  FormControl,
 } from 'react-bootstrap';
+import actions from '../actions';
+import components from '../components';
 
-class WelcomeContainer extends React.Component {
-  render() {
-    const {
-      username,
-      editUsername,
-      playGame,
-    } = this.props;
+const { Status } = components;
 
-    return (
-      <div>
-        Welcome to Tic-Tac-Toe!<br />
-        <Form>
-          <FormControl
-            type="input"
-            value={username}
-            onChange={(e) => editUsername(e.target.value)}
-          />
-          <Button
-            type="submit"
-            bsStyle="primary"
-            onClick={playGame}
-          >
-            Play!
-          </Button>
-        </Form>
-      </div>
-    );
-  }
+const WelcomeContainer = ({
+  username,
+  editUsername,
+  playGame,
+}) => {
+  const handlePlayGame = (e) => {
+    e.preventDefault();
+    playGame();
+  };
+
+  return (
+    <div className="welcome">
+      <Status text="Welcome to Tic-Tac-Toe" />
+      <form className="welcome-form">
+        <FormControl
+          type="input"
+          value={username}
+          placeholder="Enter Nickname"
+          onChange={(e) => editUsername(e.target.value)}
+        />
+        <Button
+          block={true}
+          type="submit"
+          bsStyle="primary"
+          onClick={handlePlayGame}
+        >
+          Play!
+        </Button>
+      </form>
+    </div>
+  );
 };
-
 
 
 const mapStateToProps = (state) => ({

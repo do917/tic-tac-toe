@@ -6,6 +6,7 @@ import {
 
 const defualtState = {
   username: '',
+  boardLength: 3,
   playerInit: false,
   gameInPlay: false,
   currentStatus: 'O',

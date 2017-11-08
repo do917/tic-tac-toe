@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 const Status = ({ text }) => {
   return (
-    <div className="status">
+    <h4 className="status">
       {text}
-    </div>
+    </h4>
   );
 };
 
