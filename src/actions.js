@@ -55,7 +55,7 @@ const checkWin = (pieces) => {
         const player = players[j];
         let aMatch = poss.reduce((acc, p) => {
           if (p !== player) {
-            return false;
+            return undefined;
           } else {
             return acc;
           }
@@ -65,7 +65,7 @@ const checkWin = (pieces) => {
         }
       }
     }
-    return false;
+    return undefined;
   };
 
   return aWin(pieces);
@@ -73,15 +73,17 @@ const checkWin = (pieces) => {
 
 const placePieceHelper = (i, player, board) => {
   const boardCopy = [...board];
-  boardCopy[i] = player.toUpperCase();
+  boardCopy[i] = player
   const winningPlayer = checkWin(boardCopy);
   let gameInPlay = true;
   const turn = {
     X: 'O',
     O: 'X',
   };
+  const placedLastPiece = boardCopy
+    .filter(p => p !== '').length === 9;
 
-  if (winningPlayer) {
+  if (winningPlayer || placedLastPiece) {
     gameInPlay = false;
   }
 

@@ -1,8 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import {
-//   Button,
-// } from 'react-bootstrap';
 
 class Piece extends React.Component {
   constructor(props) {
@@ -27,11 +24,12 @@ class Piece extends React.Component {
   }
 
   render() {
+    const { mark, cb, disable } = this.props;
     let hovered;
-    if (this.state.hovered) {
+    if (this.state.hovered || disable) {
       hovered = 'rgba(195, 195, 195, 0.6)';
     }
-    const { mark, cb } = this.props;
+
     return (
       <div
         className="piece flex-center"
@@ -47,7 +45,8 @@ class Piece extends React.Component {
 }
 
 Piece.propTypes = {
-  cb: PropTypes.func.isRequired,
+  cb: PropTypes.func,
+  disable: PropTypes.bool,
   mark: PropTypes.string.isRequired,
 };
 

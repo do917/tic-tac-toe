@@ -6,6 +6,7 @@ import actions from '../actions';
 
 const { Board, Status, Piece } = components;
 
+
 class CurrentGameContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -26,19 +27,20 @@ class CurrentGameContainer extends React.Component {
   currentStatusToMsg(st) {
     const status = {
       O: `${this.props.username}, make your move!`,
-      X: 'The computer is thinking',
+      X: 'The computer is thinking...',
     };
     return status[st];
   }
 
   computerMakesMove() {
     const { pieces, placePiece } = this.props;
+    const timeToThink = Math.floor(Math.random() * 3000);
     setTimeout(() => {
       const availPieces = this.piecesOnBoard(pieces);
       const indToDel = availPieces[Math.floor(Math.random() * availPieces.length)];
 
       placePiece(indToDel, 'X', pieces);
-    }, 1000);
+    }, 1);
   }
 
   render() {
@@ -47,6 +49,7 @@ class CurrentGameContainer extends React.Component {
       placePiece,
       currentStatus,
     } = this.props;
+
     const boardPieces = pieces.map((d, i) => {
       return (
         <Piece
@@ -65,7 +68,8 @@ class CurrentGameContainer extends React.Component {
 
     if (currentStatus === 'X') {
       this.computerMakesMove();
-    } 
+    }
+
     // width is number of rows * 100
     return (
       <div className="current-game flex-center">
@@ -75,6 +79,7 @@ class CurrentGameContainer extends React.Component {
     );
   }
 };
+
 
 const mapStateToProps = (state) => ({
   pieces: state.game.pieces,
