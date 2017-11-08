@@ -5,11 +5,11 @@ import {
 } from './actionTypes';
 
 const defualtState = {
+  username: '',
   playerInit: false,
   gameInPlay: false,
-  username: '',
+  currentStatus: 'o',
   pieces: ['', '', '', '', '', '', '', '', ''],
-  currentStatus: 'Make your move!'
 };
 
 const reducer = (state = defualtState, action) => {
@@ -31,7 +31,8 @@ const reducer = (state = defualtState, action) => {
   if (action.type === UPDATE_BOARD) {
     return {
       ...state,
-      pieces: action.payload.data,
+      pieces: action.payload.data.board,
+      currentStatus: action.payload.data.nextPlayerTurn,
     };
   }
 

@@ -4,10 +4,18 @@ import {
   EDIT_USERNAME,
 } from './actionTypes';
 
-const placePieceHelper = (i, board) => {
+const placePieceHelper = (i, player, board) => {
   const boardCopy = [...board];
-  boardCopy[i] = 'O';
-  return boardCopy;
+  boardCopy[i] = player.toUpperCase();
+  const turn = {
+    x: 'o',
+    o: 'x',
+  };
+  
+  return {
+    board: boardCopy,
+    nextPlayerTurn: turn[player],
+  }
 };
 
 const editUsername = (t) => ({
@@ -21,10 +29,10 @@ const playGame = () => ({
   type: PLAY_GAME,
 });
 
-const placePiece = (i, board) => ({
+const placePiece = (i, player, board) => ({
   type: UPDATE_BOARD,
   payload: {
-    data: placePieceHelper(i, board),
+    data: placePieceHelper(i, player, board),
   },
 });
 
