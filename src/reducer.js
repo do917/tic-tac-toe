@@ -1,15 +1,22 @@
 import {
   ADD_MOVE,
   UPDATE_STATUS,
-  SET_PLAYER_INFO,
+  EDIT_USERNAME,
 } from './actionTypes';
 
 const defualtState = {
   playerInit: false,
   gameWinner: false,
+  username: '',
 };
 
 const reducer = (state = defualtState, action) => {
+  if (action.type === EDIT_USERNAME) {
+    return {
+      ...state,
+      username: action.payload.data,
+    };
+  }
   return state;
 };
 

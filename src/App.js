@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import containers from './containers';
+import actions from './actions';
 import './App.css';
 
-import containers from './containers';
 const { Welcome, CurrentGame, EndGame } = containers;
 
 class AppContainer extends Component {
   render() {
-    console.log('this', this.props.game)
-    const { playerInit, gameWinner } = this.props;
+    const { playerInit, gameWinner, username, editUsername } = this.props;
     return (
       <div className="App">
         {!playerInit
-          ? <Welcome />
+          ? <Welcome username={username} editUsername={editUsername}/>
           : <CurrentGame />
           ? gameWinner
           : <EndGame />
@@ -28,7 +28,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-
+  editUsername: (t) => dispatch(actions.editUsername(t))
 });
 
 const App = connect(

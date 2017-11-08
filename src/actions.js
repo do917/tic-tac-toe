@@ -1,13 +1,16 @@
 import {
-  SET_PLAYER_INFO,
-  UPDATE_STATUS,
   ADD_MOVE,
+  UPDATE_STATUS,
+  EDIT_USERNAME,
 } from './actionTypes';
 
-const setPlayerInfo = () => {
-
-};
+const editUsername = (t) => ({
+  type: EDIT_USERNAME,
+  payload: {
+    data: t,
+  },
+});
 
 export default {
-  setPlayerInfo,
+  editUsername,
 };

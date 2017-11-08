@@ -1,11 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  FormControl,
+  Button,
+} from 'react-bootstrap';
 
-
-const Welcome = ({ }) => {
+const Welcome = ({ username, editUsername, registerUser }) => {
   return (
     <div>
-      welcome
+      Welcome to Tic-Tac-Toe!<br />
+      <FormControl onChange={(e) => editUsername(e.target.value)}>
+        {username}
+      </FormControl>
+      <Button bsStyle="primary">
+        Play!
+      </Button>
     </div>
   );
 };
