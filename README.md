@@ -9,4 +9,6 @@ yarn start
 ```
 open http://localhost:3000/
 
-live demo here: https://homework-atrium.herokuapp.com/
+##### Live Demo
+
+https://homework-atrium.herokuapp.com/
